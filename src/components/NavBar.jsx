@@ -9,43 +9,21 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import Logo from '../assets/logo.png';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
-import PersonIcon from '@mui/icons-material/Person';
-import LogoutIcon from '@mui/icons-material/Logout';
-import Badge from '@mui/material/Badge';
+import CartWidget from './CartWidget';
 
 const pages = ['Promociones', 'Carta', 'Locales', 'Contáctanos'];
-const settings = [
-    { icon: <ProductionQuantityLimitsIcon />, label: 'Ver Carrito' },
-    { icon: <PersonIcon />, label: 'Perfil' },
-    { icon: <LogoutIcon />, label: 'Salir' },
-];
-
 
 export default function NavBar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
-    const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget);
-    };
 
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
-    };
-
-    const handleCloseUserMenu = () => {
-        setAnchorElUser(null);
     };
 
     return (
@@ -137,48 +115,7 @@ export default function NavBar() {
                             </Button>
                         ))}
                     </Box>
-
-                    <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Ver opciones">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Badge badgeContent={4} color="success">
-                                    <ShoppingCartIcon color="action" fontSize="large" />
-                                </Badge>
-                            </IconButton>
-                        </Tooltip>
-                        <Menu
-                            sx={{ mt: '45px' }}
-                            id="menu-appbar"
-                            anchorEl={anchorElUser}
-                            anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            open={Boolean(anchorElUser)}
-                            onClose={handleCloseUserMenu}
-                        >
-                            {settings.map((setting) => (
-                                <MenuItem key={setting.label} onClick={handleCloseUserMenu}>
-                                    <ListItemButton
-                                        sx={{ py: 0, minHeight: 32 }}
-                                    >
-                                        <ListItemIcon sx={{ color: 'inherit' }}>
-                                            {setting.icon}
-                                        </ListItemIcon>
-                                        <ListItemText
-                                            primary={setting.label}
-                                            primaryTypographyProps={{ fontSize: 14, fontWeight: 'medium' }}
-                                        />
-                                    </ListItemButton>
-                                </MenuItem>
-                            ))}
-                        </Menu>
-                    </Box>
+                    <CartWidget counter={2} />
                 </Toolbar>
             </Container>
         </AppBar>

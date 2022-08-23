@@ -16,7 +16,7 @@
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -32,7 +32,36 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.carta-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  border-radius: 20px;
+  /* background-color: #f2f1ef; */
+  color: black;
+  margin: 10px;
+  padding: 10px;
+  border: 4px solid #1976d2;
+}
+
+.height-promocion {
+  min-height: 98%;
+}
+
+.productos-img {
+  height: 180px;
+  border-radius: 5%;
+}
+
+.productos-img:hover {
+  transform: scale(1.2);
 }
