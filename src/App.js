@@ -6,13 +6,24 @@ import ItemListContainer from './components/ItemListContainer';
 
 function App() {
 
-  const producto =
-  {
-    "nombre": "POLLO OFERTA",
-    "precio": 55,
-    "imagen": "pollo.png",
-    "descripcion": "<span>1 Pollo a la Brasa</span><br><span>+ Papas Fritas </span><br><span>+ Inka Hola 1.5 Lt <span><br><span>+ Ensalada Fresca</span>"
-  };
+  const productos = [
+    {
+      "id": "a",
+      "nombre": "POLLO OFERTA",
+      "precio": 55,
+      "imagen": "pollo.png",
+      "descripcion": "<span>1 Pollo a la Brasa</span><br><span>+ Papas Fritas </span><br><span>+ Inka Hola 1.5 Lt <span><br><span>+ Ensalada Fresca</span>",
+      "stock": 10
+    },
+    {
+      "id": "b",
+      "nombre": "1/2 POLLO OFERTA",
+      "precio": 30,
+      "imagen": "medio_pollo.png",
+      "descripcion": "<span>1/2 Pollo a la Brasa</span><br><span>+ Papas Fritas </span><br><span>+ Ensalada Fresca</span>",
+      "stock": 8
+    }
+  ];
 
 
   return (
@@ -23,7 +34,9 @@ function App() {
           <div className='carta-logo col-sm-6'>
             <img src={logo} className="App-logo" alt="logo" />
           </div>
-          <ItemListContainer carta={producto} />
+          {productos.map((item) => (
+            <ItemListContainer carta={item} key={item.id} />
+          ))}
         </div>
         <a
           className="App-link pt-5"

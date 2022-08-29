@@ -1,7 +1,8 @@
 import * as React from 'react';
+import ItemCount from './ItemCount';
 import RawHTML from './RawHTML';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import { IconButton } from '@mui/material';
+// import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+// import { IconButton } from '@mui/material';
 
 const ItemListContainer = (props) => {
     return (
@@ -12,9 +13,10 @@ const ItemListContainer = (props) => {
                 <RawHTML children={props.carta.descripcion} className="mt-3" />
                 <div className='mt-2'>
                     <h3> <b>S/{props.carta.precio}</b></h3>
-                    <IconButton>
+                    <ItemCount item={props.carta} initial={1}></ItemCount>
+                    {/* <IconButton>
                         <AddShoppingCartIcon color="primary" sx={{ fontSize: 40 }} />
-                    </IconButton>
+                    </IconButton> */}
                 </div>
             </div>
 
