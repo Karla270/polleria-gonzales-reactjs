@@ -102,7 +102,7 @@ export default function NavBar() {
                             textDecoration: 'none',
                         }}
                     >
-                        POLLERIA D'MARYS
+                        D'MARYS
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, marginLeft: '15%' }}>
                         {pages.map((page) => (

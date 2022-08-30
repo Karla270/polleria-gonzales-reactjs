@@ -48,20 +48,21 @@
   border-radius: 20px;
   /* background-color: #f2f1ef; */
   color: black;
-  margin: 10px;
+  /* margin: 10px; */
+  margin-left: 25px;
   padding: 10px;
   border: 4px solid #1976d2;
 }
 
 .height-promocion {
-  min-height: 98%;
+  min-height: 100%;
 }
 
 .productos-img {
-  height: 180px;
+  height: 200px;
   border-radius: 5%;
 }
 
 .productos-img:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
 }

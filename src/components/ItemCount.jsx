@@ -32,7 +32,8 @@ export default function ItemCount({ item, initial }) {
 
     const addCarrito = () => {
         if (contador > 0) {
-            alert('Se agregó ' + contador + ' ' + item.nombre);
+            alert(`Se agregó (${contador}) ${item.nombre} -> S/${(contador * item.precio).toFixed(2)}`);
+            // alert('Se agregó (' + contador + ') ' + item.nombre + '->');
             setContador(initial);
         }
         else {
