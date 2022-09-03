@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from "react";
-import productos from "../productos";
-import ItemList from './ItemList';
+import ItemDetail from './ItemDetail';
 
-const ItemListContainer = () => {
+const ItemDetailContainer = ({ producto }) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
-    const [listProducts, setListProducts] = useState([]);
+    const [product, setProduct] = useState({});
 
 
     useEffect(() => {
-        let promesaProductos = new Promise((res, rej) => {
+        let getItem = new Promise((res, rej) => {
             setTimeout(() => {
-                res(productos);
+                res(producto);
             }, 2000);
         });
 
-        promesaProductos
+        getItem
             .then((res) => {
-                setListProducts(res);
+                setProduct(res);
             })
             .catch((err) => {
                 setError(err);
@@ -25,14 +24,14 @@ const ItemListContainer = () => {
             .finally(() => {
                 setLoading(false);
             });
-    }, []);
+    }, [producto]);
 
     return (
-        <div className="col-sm-8">
-            {loading ? <p className="text-warning">Loading...</p> : <ItemList listProducts={listProducts} />}
+        <>
+            {loading ? <p className="text-warning">Loading...</p> : <ItemDetail item={product} />}
             <p className="text-danger">{error ? error : null}</p>
-        </div>
+        </>
     )
 }
 
-export default ItemListContainer
+export default ItemDetailContainer

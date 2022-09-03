@@ -46,6 +46,7 @@ export default function ItemCount({ item, initial }) {
             <ButtonGroup>
                 <ButtonGroup>
                     <Button
+                        color="success"
                         onClick={() => {
                             setContador(Math.max(contador - 1, 0));
                         }}
@@ -60,6 +61,7 @@ export default function ItemCount({ item, initial }) {
                 <ButtonGroup>
 
                     <Button disabled={contador === item.stock}
+                        color="success"
                         onClick={() => {
                             setContador(contador + 1);
                         }}
@@ -69,7 +71,7 @@ export default function ItemCount({ item, initial }) {
                 </ButtonGroup>
             </ButtonGroup>
             <br></br>
-            <Button variant="outlined" className='mt-2' onClick={addCarrito}>Agregar al carrito</Button>
+            <Button variant="contained" color="success" className='mt-2' onClick={addCarrito}>Agregar al carrito</Button>
         </Box>
     )
 }
