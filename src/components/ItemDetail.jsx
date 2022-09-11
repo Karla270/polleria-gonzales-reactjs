@@ -1,12 +1,19 @@
-import { Button, Chip, Divider } from '@mui/material';
-import React from 'react'
+import { Button, Chip, Divider, ButtonGroup, Box } from '@mui/material';
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import ItemCount from './ItemCount';
 import RawHTML from './RawHTML';
 
 
 const ItemDetail = ({ item }) => {
-    const navegar = useNavigate()
+    const navegar = useNavigate();
+    const [count, setCount] = useState(1);
+    const [compra, setCompra] = useState(false);
+
+    const onAdd = () => {
+        setCompra(true)
+    }
+
 
     return (
         <div className="container">
@@ -21,7 +28,31 @@ const ItemDetail = ({ item }) => {
                             <div className="col-sm-6 pt-3">
                                 <RawHTML children={item.descripcion} />
                                 <h2 className='py-2'> <b>S/{item.precio}</b></h2>
-                                <ItemCount item={item} initial={1}></ItemCount>
+                                {!compra
+                                    ? <ItemCount stock={item.stock} initial={1} onAdd={onAdd} count={count} setCount={setCount} />
+                                    : <Box className='mt-3'>
+                                        <ButtonGroup>
+                                            <ButtonGroup>
+                                                <Button variant="contained"
+                                                    color="warning"
+                                                    onClick={() => navegar('/')}
+                                                >
+                                                    Seguir Comprando
+                                                </Button>
+                                            </ButtonGroup>
+                                            <Box className='mx-1'>
+                                            </Box>
+                                            <ButtonGroup>
+                                                <Button variant="contained"
+                                                    color="success"
+                                                    onClick={() => navegar('/cart')}
+                                                >
+                                                    Ir al carrito
+                                                </Button>
+                                            </ButtonGroup>
+                                        </ButtonGroup>
+                                    </Box>
+                                }
                             </div>
                         </div>
 

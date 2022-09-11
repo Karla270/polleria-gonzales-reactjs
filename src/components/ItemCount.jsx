@@ -1,45 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Box, Button, ButtonGroup } from '@mui/material';
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";;
 
 
-export default function ItemCount({ item, initial }) {
-    const [contador, setContador] = useState(initial);
-    //montaje naciemiento
-    useEffect(() => {
-        console.log('se monto el componente');
-    }, []);
-
-    //cambios cualquiera
-    useEffect(() => {
-        //console.log('siempre que hay un render no me importa quien lo causo');
-        if (contador + 1 > item.stock) {
-            alert('Stock máximo: ' + item.stock);
+export default function ItemCount({ initial, stock, onAdd, count, setCount }) {
+    const restar = () => {
+        if (count > initial) {
+            setCount(count - 1)
         }
-    });
+    }
 
-    useEffect(() => {
-        console.log('siempre que cambie el contador 1');
-    }, [contador]);
-
-    //muere o desmonta el componente
-    useEffect(() => {
-        return () => {
-            console.log('muere el componente');
-        };
-    }, []);
-
-    const addCarrito = () => {
-        if (contador > 0) {
-            alert(`Se agregó (${contador}) ${item.nombre} -> S/${(contador * item.precio).toFixed(2)}`);
-            // alert('Se agregó (' + contador + ') ' + item.nombre + '->');
-            setContador(initial);
+    const sumar = () => {
+        if (count < stock) {
+            setCount(count + 1)
         }
-        else {
-            alert('Debe añadir unidades');
-        }
-    };
+    }
 
     return (
         <Box className='mt-3'>
@@ -47,31 +23,27 @@ export default function ItemCount({ item, initial }) {
                 <ButtonGroup>
                     <Button
                         color="success"
-                        onClick={() => {
-                            setContador(Math.max(contador - 1, 0));
-                        }}
+                        onClick={restar}
                     >
                         <RemoveIcon fontSize="small" />
                     </Button>
                 </ButtonGroup>
 
                 <Box className='mx-3'>
-                    <span>{contador}</span>
+                    <span>{count}</span>
                 </Box>
                 <ButtonGroup>
 
-                    <Button disabled={contador === item.stock}
+                    <Button disabled={count === stock}
                         color="success"
-                        onClick={() => {
-                            setContador(contador + 1);
-                        }}
+                        onClick={sumar}
                     >
                         <AddIcon fontSize="small" />
                     </Button>
                 </ButtonGroup>
             </ButtonGroup>
             <br></br>
-            <Button variant="contained" color="success" className='mt-2' onClick={addCarrito}>Agregar al carrito</Button>
+            <Button variant="contained" color="success" className='mt-2' onClick={onAdd}>Comprar</Button>
         </Box>
     )
 }
