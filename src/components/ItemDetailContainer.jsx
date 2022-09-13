@@ -4,29 +4,29 @@ import { useParams } from 'react-router-dom'
 import productos from "../productos";
 
 const ItemDetailContainer = () => {
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState('');
-    const [product, setProduct] = useState({});
-    const { id } = useParams();
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState('')
+    const [product, setProduct] = useState({})
+    const { id } = useParams()
 
     useEffect(() => {
         let getItem = new Promise((res, rej) => {
             setTimeout(() => {
-                res(productos.find((item) => item.id === Number(id)));
-            }, 2000);
-        });
+                res(productos.find((item) => item.id === Number(id)))
+            }, 2000)
+        })
 
         getItem
             .then((res) => {
-                setProduct(res);
+                setProduct(res)
             })
             .catch((err) => {
-                setError(err);
+                setError(err)
             })
             .finally(() => {
-                setLoading(false);
-            });
-    }, [id]);
+                setLoading(false)
+            })
+    }, [id])
 
     return (
         <>

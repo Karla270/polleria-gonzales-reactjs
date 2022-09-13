@@ -4,35 +4,35 @@ import productos from "../productos";
 import ItemList from './ItemList';
 import logo from '../assets/logo.png';
 const ItemListContainer = () => {
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
-    const [listProducts, setListProducts] = useState([]);
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState('')
+    const [listProducts, setListProducts] = useState([])
     const { categoriaId } = useParams()
 
 
     useEffect(() => {
-        setLoading(true);
+        setLoading(true)
         let promesaProductos = new Promise((res, rej) => {
             setTimeout(() => {
                 if (categoriaId) {
                     res(productos.filter((item) => item.category === categoriaId))
                 } else {
-                    res(productos);
+                    res(productos)
                 }
-            }, 2000);
-        });
+            }, 2000)
+        })
 
         promesaProductos
             .then((res) => {
-                setListProducts(res);
+                setListProducts(res)
             })
             .catch((err) => {
-                setError(err);
+                setError(err)
             })
             .finally(() => {
-                setLoading(false);
+                setLoading(false)
             });
-    }, [categoriaId]);
+    }, [categoriaId])
 
     return (
 

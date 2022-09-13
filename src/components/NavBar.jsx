@@ -13,21 +13,23 @@ import MenuItem from '@mui/material/MenuItem';
 import Logo from '../assets/logo.png';
 import CartWidget from './CartWidget';
 import { NavLink } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
 
 const pages = [{ menu: 'Promociones', url: '/categoria/promociones' }, { menu: 'Carta', url: '/categoria/carta' },
     //{'Locales'}, {'Contáctanos'}
-];
+]
 
 export default function NavBar() {
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
+    const [anchorElNav, setAnchorElNav] = React.useState(null)
+    const { count } = useCart()
 
     const handleOpenNavMenu = (event) => {
-        setAnchorElNav(event.currentTarget);
-    };
+        setAnchorElNav(event.currentTarget)
+    }
 
     const handleCloseNavMenu = () => {
-        setAnchorElNav(null);
-    };
+        setAnchorElNav(null)
+    }
 
     return (
         <AppBar position="static">
@@ -131,7 +133,7 @@ export default function NavBar() {
                             </Button>
                         ))}
                     </Box>
-                    <CartWidget counter={2} />
+                    <CartWidget counter={count} />
                 </Toolbar>
             </Container>
         </AppBar>
