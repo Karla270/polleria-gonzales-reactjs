@@ -83,7 +83,7 @@ export default function NavBar() {
                             }}
                         >
                             {pages.map((page) => (
-                                <MenuItem key={page.menu} onClick={handleCloseNavMenu} to={page.url}>
+                                <MenuItem key={page.menu} onClick={handleCloseNavMenu}>
                                     <NavLink to={page.url}>
                                         <Typography textAlign="center"
                                             sx={{
@@ -133,7 +133,8 @@ export default function NavBar() {
                             </Button>
                         ))}
                     </Box>
-                    <CartWidget counter={count} />
+                    {count > 0 ? <CartWidget counter={count} /> : ''}
+
                 </Toolbar>
             </Container>
         </AppBar>

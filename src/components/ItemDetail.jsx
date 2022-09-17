@@ -7,7 +7,7 @@ import RawHTML from './RawHTML';
 
 
 const ItemDetail = ({ item }) => {
-    const { nombre, descripcion, category, precio, stock, imagen, id } = item
+    const { name, description, category, price, stock, image, id } = item
     const [count, setCount] = useState(1)
     const [compra, setCompra] = useState(false)
     const { addItem } = useCart()
@@ -17,12 +17,12 @@ const ItemDetail = ({ item }) => {
     const onAdd = () => {
         let purchase = {
             id,
-            nombre,
-            descripcion,
+            name,
+            description,
             category,
-            precio,
+            price,
             stock,
-            imagen,
+            image,
             quantity: count
         }
         setCompra(true)
@@ -35,14 +35,14 @@ const ItemDetail = ({ item }) => {
             {!item ? <p className="text-danger p-5">No se encontró el producto</p> :
                 <div className="body p-3">
                     <div className="card height-promocion text-center">
-                        <h2><u>{nombre}</u></h2>
+                        <h2><u>{name}</u></h2>
                         <div className="row py-3">
                             <div className="col-sm-6">
-                                <img src={require(`../assets/products/${imagen}`)} alt="Logo" className="item-img" />
+                                <img src={require(`../assets/products/${image}`)} alt="Logo" className="item-img" />
                             </div>
                             <div className="col-sm-6 pt-3">
-                                <RawHTML children={descripcion} />
-                                <h2 className='py-2'> <b>S/{precio}</b></h2>
+                                <RawHTML children={description} />
+                                <h2 className='py-2'> <b>S/{price}</b></h2>
                                 {!compra
                                     ? <ItemCount stock={stock} initial={1} onAdd={onAdd} count={count} setCount={setCount} />
                                     : <Box className='mt-3'>

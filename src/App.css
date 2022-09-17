@@ -87,10 +87,41 @@ a:hover {
   border-radius: 5%;
 }
 
-.item-img:hover {
+.item-img:hover,
+.carrito-img:hover {
   transform: scale(1.1);
 }
 
-h2{
+h2 {
   font-family: 'Verdana';
+}
+
+.carrito-img {
+  height: 8rem;
+  width: 10.5rem;
+  border-radius: 100%;
+}
+
+.carrito {
+  padding: 10px 5px 10px 20px;
+  background: white;
+  border-radius: 20px;
+  display: block;
+}
+
+
+.list-group .item {
+  position: relative;
+  /* display: block; */
+  padding: 0.75rem 1.25rem;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, .125);
+  justify-content: center;
+  margin-right: 0px;
+}
+
+.item span,
+.item button {
+  margin-top: auto;
+  margin-bottom: auto;
 }

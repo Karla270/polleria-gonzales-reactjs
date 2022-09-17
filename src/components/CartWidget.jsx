@@ -5,16 +5,16 @@ import PersonIcon from '@mui/icons-material/Person';
 import LogoutIcon from '@mui/icons-material/Logout';
 import Badge from '@mui/material/Badge';
 import { Box, IconButton, ListItemButton, ListItemIcon, ListItemText, Menu, MenuItem, Tooltip } from '@mui/material';
+import { NavLink } from 'react-router-dom';
 
 const settings = [
-    { icon: <ProductionQuantityLimitsIcon />, label: 'Ver Carrito' },
-    { icon: <PersonIcon />, label: 'Perfil' },
-    { icon: <LogoutIcon />, label: 'Salir' },
+    { icon: <ProductionQuantityLimitsIcon />, label: 'Ver Carrito', url: '/cart' },
+    { icon: <PersonIcon />, label: 'Perfil', url: '/' },
+    { icon: <LogoutIcon />, label: 'Salir', url: '/' },
 ];
 
 export default function CartWidget(props) {
     const [anchorElUser, setAnchorElUser] = React.useState(null)
-
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget)
     };
@@ -50,17 +50,19 @@ export default function CartWidget(props) {
             >
                 {settings.map((setting) => (
                     <MenuItem key={setting.label} onClick={handleCloseUserMenu}>
-                        <ListItemButton
-                            sx={{ py: 0, minHeight: 32 }}
-                        >
-                            <ListItemIcon sx={{ color: 'inherit' }}>
-                                {setting.icon}
-                            </ListItemIcon>
-                            <ListItemText
-                                primary={setting.label}
-                                primaryTypographyProps={{ fontSize: 14, fontWeight: 'medium' }}
-                            />
-                        </ListItemButton>
+                        <NavLink to={setting.url}>
+                            <ListItemButton
+                                sx={{ py: 0, minHeight: 32 }}
+                            >
+                                <ListItemIcon sx={{ color: 'black' }}>
+                                    {setting.icon}
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary={setting.label}
+                                    primaryTypographyProps={{ fontSize: 14, fontWeight: 'medium', color: 'black' }}
+                                />
+                            </ListItemButton>
+                        </NavLink>
                     </MenuItem>
                 ))}
             </Menu>
