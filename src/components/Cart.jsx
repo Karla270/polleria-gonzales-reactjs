@@ -8,20 +8,20 @@ const Cart = () => {
   const { cart, cartTotal, clear } = useCart()
   const navegar = useNavigate()
   return (
-    <div>
+    <div className="pb-5">
       {
         !cart.length
           ? <div className='p-5'>
-            <h2 className='text-warning'>Tu carrito esta vacio!</h2>
+            <h1 className='text-warning'>¡Tu carrito esta vacio!</h1>
             <h4 className='text-info p-3'>Te invitamos a ver nuestros productos</h4>
             <Button variant="contained" color="success" className='mt-2' onClick={() => navegar('/')}>Ir a comprar</Button>
           </div>
-          : <div className="container py-5">
-            <div className="card body py-3">
-              <h2><u>Tu carrito</u></h2>
+          : <div className="container py-4">
+            <div className="card body">
+              <h1><u>Tu carrito</u></h1>
               {cart.map((compra) => <CartItem key={compra.id} compra={compra} />)}
-              <h1>Total a pagar : S/ {cartTotal()}</h1>
-              <Box className='mt-3'>
+              <h3 className='pt-2'>Total a pagar : S/ {cartTotal()}</h3>
+              <Box className='py-3'>
                 <ButtonGroup>
                   <ButtonGroup>
                     <Button variant="contained"
@@ -36,7 +36,7 @@ const Cart = () => {
                   <ButtonGroup>
                     <Button variant="contained"
                       color="success"
-                      onClick={() => navegar('/')}
+                      onClick={() => navegar('/checkout')}
                     >
                       Terminar compra
                     </Button>

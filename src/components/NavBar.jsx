@@ -119,9 +119,8 @@ export default function NavBar() {
                         {pages.map((page) => (
                             <Button
                                 key={page.menu}
-                                // onClick={handleCloseNavMenu}
+                                onClick={handleCloseNavMenu}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
-
                             >
                                 <NavLink to={page.url} activeclassname="active">
                                     <Typography textAlign="center" to={page.url} variant="h6"

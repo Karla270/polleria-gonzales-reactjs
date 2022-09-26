@@ -29,34 +29,14 @@ const ItemDetailContainer = () => {
             .finally(() => setLoading(false))
     }, [id])
 
-
-    // useEffect(() => {
-    //     let getItem = new Promise((res, rej) => {
-    //         setTimeout(() => {
-    //             res(productos.find((item) => item.id === Number(id)))
-    //         }, 2000)
-    //     })
-
-    //     getItem
-    //         .then((res) => {
-    //             setProduct(res)
-    //         })
-    //         .catch((err) => {
-    //             setError(err)
-    //         })
-    //         .finally(() => {
-    //             setLoading(false)
-    //         })
-    // }, [id])
-
     return (
-        <>
+        <aside className="pb-3">
             {loading ? <p className="text-warning p-5">Loading...</p> : (
                 product.name ? <ItemDetail item={product} />
                     : <p className="text-warning p-5">No se encontró el producto</p>
             )}
             <p className="text-danger">{error ? error : null}</p>
-        </>
+        </aside>
     )
 }
 

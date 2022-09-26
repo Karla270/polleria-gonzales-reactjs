@@ -1,3 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Verdana;
+}
+
+html,
+body {
+  height: 100%;
+  line-height: normal;
+  background-color: #282c34;
+}
+
 .App {
   text-align: center;
 }
@@ -13,9 +26,27 @@
   }
 }
 
-.App-header {
+footer {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+}
+
+section {
+  padding-bottom: 10px;
+}
+
+.item-description {
+  line-height: 1.4em;
+}
+
+.wrapper {
+  min-height: 100%;
+  position: relative;
   background-color: #282c34;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   /* display: flex; */
   flex-direction: column;
   align-items: center;
@@ -124,4 +155,11 @@ h2 {
 .item button {
   margin-top: auto;
   margin-bottom: auto;
+}
+
+.card-check {
+  min-height: 100%;
+  width: auto;
+  text-align: center;
+  justify-content: center;
 }

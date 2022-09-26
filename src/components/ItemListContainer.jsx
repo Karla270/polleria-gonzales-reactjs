@@ -30,33 +30,7 @@ const ItemListContainer = () => {
             .finally(() => setLoading(false))
     }, [categoriaId])
 
-
-    // useEffect(() => {
-    //     setLoading(true)
-    //     let promesaProductos = new Promise((res, rej) => {
-    //         setTimeout(() => {
-    //             if (categoriaId) {
-    //                 res(productos.filter((item) => item.category === categoriaId))
-    //             } else {
-    //                 res(productos)
-    //             }
-    //         }, 2000)
-    //     })
-
-    //     promesaProductos
-    //         .then((res) => {
-    //             setListProducts(res)
-    //         })
-    //         .catch((err) => {
-    //             setError(err)
-    //         })
-    //         .finally(() => {
-    //             setLoading(false)
-    //         });
-    // }, [categoriaId])
-
     return (
-
         <div className="col-12 row my-5">
             <div className='carta-logo col-sm-4'>
                 <img src={logo} className="App-logo" alt="logo" />
@@ -66,9 +40,6 @@ const ItemListContainer = () => {
                 <p className="text-danger">{error ? error : null}</p>
             </div>
         </div>
-
-
-
     )
 }
 

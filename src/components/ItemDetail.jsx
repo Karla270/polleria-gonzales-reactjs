@@ -31,8 +31,8 @@ const ItemDetail = ({ item }) => {
 
 
     return (
-        <div className="container">
-            <div className="body p-3">
+        <div className="container py-4">
+            <div className="body">
                 <div className="card height-promocion text-center">
                     <h2><u>{name}</u></h2>
                     <div className="row py-3">
@@ -40,7 +40,7 @@ const ItemDetail = ({ item }) => {
                             <img src={require(`../assets/products/${image}`)} alt="Logo" className="item-img" />
                         </div>
                         <div className="col-sm-6 pt-3">
-                            <RawHTML children={description} />
+                            <RawHTML children={description} className={'item-description'} />
                             <h2 className='py-2'> <b>S/{price.toFixed(2)}</b></h2>
                             {!compra
                                 ? <ItemCount stock={stock} initial={1} onAdd={onAdd} count={count} setCount={setCount} />
@@ -74,7 +74,10 @@ const ItemDetail = ({ item }) => {
                     <Divider>
                         <Chip label="Stock" />
                     </Divider>
-                    <p>Stock disponible: {stock}</p>
+                    {stock > 0 ?
+                        <p>Stock disponible: {stock}</p> :
+                        <p className='text-danger'>No hay stock disponible</p>
+                    }
                 </div>
             </div>
         </div>
