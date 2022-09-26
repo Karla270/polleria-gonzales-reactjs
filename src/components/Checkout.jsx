@@ -5,6 +5,7 @@ import { useCart } from '../context/CartContext'
 import { useNavigate } from 'react-router-dom'
 import { db } from '../firebase/firebase'
 import { Button } from '@mui/material'
+import logo from '../assets/logo.png';
 
 const Checkout = () => {
     const [comprador, setComprador] = useState({})
@@ -67,27 +68,28 @@ const Checkout = () => {
     return (
         <div className="pb-5">
             {!orderId
-                ? <div className="container py-4">
-                    <div className="body carta-logo">
-                        <div className="card px-5">
-                            <h2><u>Checkout</u></h2>
-                            <form className='py-3'>
-                                <div className="mb-3">
-                                    <label className="form-label">Nombre completos</label>
-                                    <input className="form-control" type="text" placeholder='Nombre y Apellido' name="name" onChange={datosComprador} />
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Número de telefono</label>
-                                    <input className="form-control" type="number" placeholder='011587892545' name="phone" onChange={datosComprador} />
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">E-mail</label>
-                                    <input className="form-control" type="email" placeholder='pepe@gmail.com' name="email" onChange={datosComprador} />
-                                </div>
-                                <Button variant="contained" color="success" onClick={finalizarCompra}>Finalizar Compra</Button>
-                                {mensaje && <p style={{ color: 'red', paddingTop: '10px' }}> Por favor complete todos los campos</p>}
-                            </form>
-                        </div>
+                ? <div className="col-12 row py-4">
+                    <div className='col-sm-5 carta-logo'>
+                        <img src={logo} className="App-logo" alt="logo" />
+                    </div>
+                    <div className="col-sm-6 card body animate__animated animate__backInDown">
+                        <h2><u>Checkout</u></h2>
+                        <form className='py-3'>
+                            <div className="mb-3">
+                                <label className="form-label">Nombre completos</label>
+                                <input className="form-control" type="text" placeholder='Nombre y Apellido' name="name" onChange={datosComprador} />
+                            </div>
+                            <div className="mb-3">
+                                <label className="form-label">Número de telefono</label>
+                                <input className="form-control" type="number" placeholder='011587892545' name="phone" onChange={datosComprador} />
+                            </div>
+                            <div className="mb-3">
+                                <label className="form-label">E-mail</label>
+                                <input className="form-control" type="email" placeholder='pepe@gmail.com' name="email" onChange={datosComprador} />
+                            </div>
+                            <Button variant="contained" color="success" onClick={finalizarCompra}>Finalizar Compra</Button>
+                            {mensaje && <p style={{ color: 'red', paddingTop: '10px' }}> Por favor complete todos los campos</p>}
+                        </form>
                     </div>
                 </div>
                 :

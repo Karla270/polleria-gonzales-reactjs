@@ -30,7 +30,7 @@ const ItemDetailContainer = () => {
     }, [id])
 
     return (
-        <aside className="pb-3">
+        <aside className="pb-1">
             {loading ? <p className="text-warning p-5">Loading...</p> : (
                 product.name ? <ItemDetail item={product} />
                     : <p className="text-warning p-5">No se encontró el producto</p>

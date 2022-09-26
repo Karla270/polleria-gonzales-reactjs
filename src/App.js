@@ -23,10 +23,8 @@ function App() {
     <CartProvider>
       <BrowserRouter>
         <div className="App wrapper">
-          <header>
             <NavBar />
-          </header>
-          <section>
+          <section className='py-3'>
             <Routes>
               <Route path='/' element={<ItemListContainer />} />
               <Route path='/categoria/:categoriaId' element={<ItemListContainer />} />

@@ -72,7 +72,7 @@ section {
 .carta-logo {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .card {
@@ -80,9 +80,9 @@ section {
   /* background-color: #f2f1ef; */
   color: black;
   /* margin: 10px; */
-  margin-left: 25px;
+  /* margin-left: 25px; */
   padding: 10px;
-  border: 4px solid #1976d2;
+  border: 4px solid #3d8f67;
 }
 
 .height-promocion {
@@ -90,7 +90,7 @@ section {
 }
 
 .productos-img {
-  height: 100%;
+  height: 328px;
   border-radius: 5%;
 }
 
@@ -162,4 +162,22 @@ h2 {
   width: auto;
   text-align: center;
   justify-content: center;
+}
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  background-color: #007f39;
+  border-radius: 5px;
+}
+
+.carousel-inner .carousel-item img {
+  width: 100%;
+  height: 550px;
+  border: solid 5px #007235;
+  border-radius: 20px;
+}
+
+header{
+  background-color: #3cc985 !important;
+  border-bottom: 4px solid #0a5c34;
 }

@@ -7,7 +7,7 @@ const Item = ({ producto }) => {
     const navegar = useNavigate()
 
     return (
-        <div className="col-lg-6 col-sm-6 col-xs-12 mb-3">
+        <div className="col-lg-3 col-sm-6 col-xs-12 mb-3">
             <div className="card height-promocion text-center">
                 <h2>{producto.name}</h2>
                 <img src={require(`../assets/products/${producto.image}`)} alt="Logo" className="productos-img" />

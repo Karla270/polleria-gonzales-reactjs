@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import ItemCount from './ItemCount';
 import RawHTML from './RawHTML';
+import logo from '../assets/logo.png';
 
 
 const ItemDetail = ({ item }) => {
@@ -31,55 +32,62 @@ const ItemDetail = ({ item }) => {
 
 
     return (
-        <div className="container py-4">
-            <div className="body">
-                <div className="card height-promocion text-center">
-                    <h2><u>{name}</u></h2>
-                    <div className="row py-3">
-                        <div className="col-sm-6">
-                            <img src={require(`../assets/products/${image}`)} alt="Logo" className="item-img" />
-                        </div>
-                        <div className="col-sm-6 pt-3">
-                            <RawHTML children={description} className={'item-description'} />
-                            <h2 className='py-2'> <b>S/{price.toFixed(2)}</b></h2>
-                            {!compra
-                                ? <ItemCount stock={stock} initial={1} onAdd={onAdd} count={count} setCount={setCount} />
-                                : <Box className='mt-3'>
-                                    <ButtonGroup>
+        <div className="col-12 row py-4">
+            <div className='carta-logo col-sm-3'>
+                <img src={logo} className="App-logo" alt="logo" />
+            </div>
+            <div className="col-sm-9">
+                <div className="body">
+                    <div className="card height-promocion text-center animate__animated animate__backInDown">
+                        <h2><u>{name}</u></h2>
+                        <div className="row py-3">
+                            <div className="col-sm-6">
+                                <img src={require(`../assets/products/${image}`)} alt="Logo" className="item-img" />
+                            </div>
+                            <div className="col-sm-6 pt-3">
+                                <RawHTML children={description} className={'item-description'} />
+                                <h2 className='py-2'> <b>S/{price.toFixed(2)}</b></h2>
+                                {!compra
+                                    ? <ItemCount stock={stock} initial={1} onAdd={onAdd} count={count} setCount={setCount} />
+                                    : <Box className='mt-3'>
                                         <ButtonGroup>
-                                            <Button variant="contained"
-                                                color="warning"
-                                                onClick={() => navegar('/')}
-                                            >
-                                                Seguir Comprando
-                                            </Button>
+                                            <ButtonGroup>
+                                                <Button variant="contained"
+                                                    color="warning"
+                                                    onClick={() => navegar('/')}
+                                                >
+                                                    Seguir Comprando
+                                                </Button>
+                                            </ButtonGroup>
+                                            <Box className='mx-1'>
+                                            </Box>
+                                            <ButtonGroup>
+                                                <Button variant="contained"
+                                                    color="success"
+                                                    onClick={() => navegar('/cart')}
+                                                >
+                                                    Ir al carrito
+                                                </Button>
+                                            </ButtonGroup>
                                         </ButtonGroup>
-                                        <Box className='mx-1'>
-                                        </Box>
-                                        <ButtonGroup>
-                                            <Button variant="contained"
-                                                color="success"
-                                                onClick={() => navegar('/cart')}
-                                            >
-                                                Ir al carrito
-                                            </Button>
-                                        </ButtonGroup>
-                                    </ButtonGroup>
-                                </Box>
-                            }
+                                    </Box>
+                                }
+                            </div>
                         </div>
-                    </div>
 
-                    <Button variant="outlined" className='m-2' onClick={() => navegar(`/categoria/${category}`)}>Regresar</Button>
-                    <Divider>
-                        <Chip label="Stock" />
-                    </Divider>
-                    {stock > 0 ?
-                        <p>Stock disponible: {stock}</p> :
-                        <p className='text-danger'>No hay stock disponible</p>
-                    }
+                        <Button variant="outlined" className='m-2' onClick={() => navegar(`/categoria/${category}`)}>Regresar</Button>
+                        <Divider>
+                            <Chip label="Stock" />
+                        </Divider>
+                        {stock > 0 ?
+                            <p>Stock disponible: {stock}</p> :
+                            <p className='text-danger'>No hay stock disponible</p>
+                        }
+                    </div>
                 </div>
             </div>
+
+
         </div>
 
     )
