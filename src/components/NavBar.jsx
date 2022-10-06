@@ -21,7 +21,7 @@ const pages = [{ menu: 'Promociones', url: '/categoria/promociones' }, { menu: '
 
 export default function NavBar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null)
-    const { count } = useCart()
+    const { count, cartTotal, user } = useCart()
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget)
@@ -132,7 +132,7 @@ export default function NavBar() {
                             </Button>
                         ))}
                     </Box>
-                    <CartWidget counter={count} />
+                    <CartWidget counter={count} total={cartTotal()} user={user}/>
 
                 </Toolbar>
             </Container>

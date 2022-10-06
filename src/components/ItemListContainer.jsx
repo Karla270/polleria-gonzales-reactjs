@@ -36,19 +36,12 @@ const ItemListContainer = () => {
                 <>
                     {
                         categoriaId ?
-                            <ItemList productList={productList} /> :
-                            <><Carousel /><ItemList productList={productList}/></>
+                            <ItemList productList={productList} className={'col-sm-12 row center-content'}/> :
+                            <><Carousel /><ItemList productList={productList} className={'col-sm-12 row pt-4'}/></>
                     }
                 </>
             }
             <p className="text-danger">{error ? error : null}</p>
-            {/* <div className='carta-logo col-sm-4'>
-                <img src={logo} className="App-logo" alt="logo" />
-            </div>
-            <div className="col-sm-8">
-                {loading ? <p className="text-warning p-5">Cargando...</p> : <ItemList productList={productList} />}
-                <p className="text-danger">{error ? error : null}</p>
-            </div> */}
         </div>
     )
 }

@@ -4,7 +4,7 @@ export default function Footer() {
             <footer>
                 <div className="items-footer animate__animated animate__slideInLeft">
                     <div className="item-4">
-                        <img src={require(`../assets/logo.png`)} alt="Logo" className="logo-img App-logo" />
+                        <img src={require(`../assets/logo.png`)} alt="Logo" className="logo-img" />
                     </div>
                     <div className="mt-1 item-4">
                         <h5><b>Contáctanos</b></h5>
@@ -26,8 +26,7 @@ export default function Footer() {
             </footer>
             <div className="fixed-whatsapp">
                 <img className="icono-contactenos" src={require(`../assets/whatsapp-icon-64px.png`)} alt="Icono de Whatsapp"
-                    data-toggle="tooltip" data-placement="left" title="Whatsappeame!"
-                    onClick={window.open('https://api.whatsapp.com/send?phone=51987654321&text=Hola')} />
+                    data-toggle="tooltip" data-placement="left" title="Whatsappeame!" />
             </div>
         </>
 

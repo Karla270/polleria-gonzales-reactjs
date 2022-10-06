@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 
 export default function CartWidget(props) {
     return (
-        <Box style={{ display: 'flex' }} className="pt-3 mb-sm-2">
+        <Box style={{ display: 'flex' }} className="pt-2 mb-sm-2">
             <NavLink to={'/login'} style={{ display: 'block' }}>
                 <IconButton sx={{ p: 0 }} >
                     <PersonIcon color="action" fontSize="large" />
@@ -17,7 +17,7 @@ export default function CartWidget(props) {
                         fontFamily: 'monospace',
                         fontWeight: 700,
                         color: '#1c5c3d',
-                    }}>Bienvenid@</Typography>
+                    }}>{props.user}</Typography>
             </NavLink>
             {props.counter > 0 ?
                 <NavLink to={'/cart'} style={{ display: 'block', marginLeft: '15px' }}>
@@ -31,7 +31,7 @@ export default function CartWidget(props) {
                             fontFamily: 'monospace',
                             fontWeight: 700,
                             color: '#1c5c3d'
-                        }}>S/0.00</Typography>
+                        }}>S/{props.total}</Typography>
                 </NavLink> : ''}
 
         </Box>

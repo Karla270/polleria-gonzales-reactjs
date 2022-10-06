@@ -32,11 +32,11 @@ const ItemDetail = ({ item }) => {
 
 
     return (
-        <div className="col-12 row py-4">
-            <div className='carta-logo col-md-3 col-sm-12'>
+        <div className="col-12 row center-content pt-md-5 pt-lg-0">
+            <div className='col-md-3 carta-logo d-none d-lg-flex'>
                 <img src={logo} className="App-logo" alt="logo" />
             </div>
-            <div className="col-md-9 col-sm-12">
+            <div className="col-md-12 col-lg-9 m-md-2 m-lg-0">
                 <div className="body">
                     <div className="card height-promocion text-center animate__animated animate__backInDown">
                         <h2><u>{name}</u></h2>

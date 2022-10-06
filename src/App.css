@@ -80,6 +80,12 @@ body {
   min-height: 100%;
 }
 
+.height-cart {
+  overflow-y: auto;
+  max-height: calc(100vh - 220px);
+}
+
+
 .productos-img {
   height: 328px;
   border-radius: 5%;
@@ -289,6 +295,14 @@ footer {
   cursor: pointer;
 }
 
+.center-content {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
 @media (max-width: 900px) {
   .item-4 {
     flex: 0 0 50%;
@@ -328,6 +342,14 @@ footer {
   .carrito {
     margin-top: 3rem !important;
   }
+  
+  .center-content {
+    position: inherit;
+    left: 0;
+    top: 0;
+    -webkit-transform: 0;
+    transform: none;
+  }
 }
 
 .responsive-iframe {
@@ -348,4 +370,5 @@ footer {
   .fixed-whatsapp {
     bottom: 225px;
   }
+
 }

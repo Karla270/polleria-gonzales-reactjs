@@ -18,11 +18,11 @@ const Cart = () => {
             <Button variant="contained" color="success" className='mt-2' onClick={() => navegar('/')}>Ir a comprar</Button>
           </div>
           :
-          <div className="col-12 row py-4">
-            <div className='col-sm-3 carta-logo'>
+          <div className="center-content col-12 row pt-md-1 pt-lg-0">
+            <div className='col-md-3 carta-logo d-none d-lg-block'>
               <img src={logo} className="App-logo" alt="logo" />
             </div>
-            <div className="col-sm-9 card body animate__animated animate__backInDown">
+            <div className="col-md-12 col-lg-9 card height-cart animate__animated animate__backInDown m-md-2 m-lg-0">
               <h1><u>Tu carrito</u></h1>
               {cart.map((compra) => <CartItem key={compra.id} compra={compra} />)}
               <h3 className='pt-2'>Total a pagar : S/ {cartTotal()}</h3>

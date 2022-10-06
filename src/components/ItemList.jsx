@@ -1,8 +1,8 @@
 import Item from "./Item";
 
-const ItemList = ({ productList }) => {
+const ItemList = ({ productList, className }) => {
     return (
-        <section className="col-sm-12 row pt-lg-4 pt-md-3">
+        <section className={className}>
             {productList.map((product) => {
                 return <Item producto={product} key={product.id} />;
             })}

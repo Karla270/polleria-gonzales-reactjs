@@ -66,15 +66,15 @@ const Checkout = () => {
         return <p className="text-warning p-5">Cargando...</p>
     }
     return (
-        <div>
+        <div className='pt-md-5 pt-lg-0'>
             {!orderId
-                ? <div className="col-12 row py-4">
-                    <div className='col-sm-5 carta-logo'>
+                ? <div className="col-12 row center-content">
+                    <div className='col-md-5 carta-logo d-none d-lg-block'>
                         <img src={logo} className="App-logo" alt="logo" />
                     </div>
-                    <div className="col-sm-6 card body animate__animated animate__backInDown">
+                    <div className="col-md-12 col-lg-6 card body animate__animated animate__backInDown m-md-2 m-lg-0">
                         <h2><u>Checkout</u></h2>
-                        <form className='py-3'>
+                        <form className='py-3 col-auto'>
                             <div className="mb-3">
                                 <label className="form-label">Nombre completos</label>
                                 <input className="form-control" type="text" placeholder='Nombre y Apellido' name="name" onChange={datosComprador} />
@@ -93,7 +93,7 @@ const Checkout = () => {
                     </div>
                 </div>
                 :
-                <div className="container py-5">
+                <div className="center-content container">
                     <div className="body carta-logo">
                         <div className="card card-check p-5">
                             <h2 className="pb-2 font-weight-bold">¡Muchas gracias por su compra!</h2>
