@@ -1,7 +1,6 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: Verdana;
 }
 
 html,
@@ -26,16 +25,8 @@ body {
   }
 }
 
-footer {
-  width: 100%;
-  height: auto;
-  position: absolute;
-  bottom: 10px;
-  left: 0;
-}
-
-section {
-  padding-bottom: 10px;
+.container-body {
+  padding-bottom: 95px;
 }
 
 .item-description {
@@ -177,7 +168,184 @@ h2 {
   border-radius: 20px;
 }
 
-header{
+header {
   background-color: #3cc985 !important;
   border-bottom: 4px solid #0a5c34;
+}
+
+footer {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.items-footer {
+  display: flex;
+  text-align: center;
+  flex-wrap: wrap;
+  border-top: 4px solid #0a5c34;
+  background-color: #3cc985 !important;
+  font-family: monospace;
+}
+
+.space-5 {
+  line-height: 5rem;
+}
+
+.fa {
+  margin: 5px 2px;
+  padding: 10px;
+  width: 20px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  display: initial;
+}
+
+.fa:hover {
+  opacity: 0.7;
+}
+
+/*Creamos el bucle para usar los valores del mapa*/
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+  padding-left: 13px;
+  padding-right: 13px;
+}
+
+.fa-instagram {
+  background: #f40083;
+  color: white;
+}
+
+.fa-google {
+  background: #de2125;
+  color: white;
+}
+
+.fa-youtube {
+  background: #bb0000;
+  color: white;
+}
+
+.fa-paypal {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-credit-card {
+  background: #bb0000;
+  color: white;
+}
+
+.fa-money {
+  background: #f40083;
+  color: white;
+}
+
+.fa-phone {
+  color: #0a5c34;
+}
+
+.fa-whatsapp {
+  color: green;
+}
+
+.item-1 {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+.item-2 {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+.item-3 {
+  flex: 0 0 33.33333%;
+  max-width: 33.33333%;
+}
+
+.item-4 {
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+
+.logo-img {
+  width: 95px;
+  height: 95px;
+}
+
+.fixed-whatsapp {
+  position: fixed;
+  right: 0;
+  bottom: 10px;
+  z-index: 1030;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .item-4 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .item-2 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .container-header .item-2 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .items-footer {
+    padding-bottom: 15px;
+  }
+
+  .container-body {
+    padding-bottom: 180px;
+  }
+
+  .col-xs-12 {
+    padding-top: 1rem;
+  }
+
+  .carousel-inner .carousel-item img {
+    height: 400px;
+  }
+
+  #carousel {
+    width: 100%;
+  }
+
+  .carrito {
+    margin-top: 3rem !important;
+  }
+}
+
+.responsive-iframe {
+  width: 90%;
+}
+
+@media (max-width: 420px) {
+  .item-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  footer .item-4 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .fixed-whatsapp {
+    bottom: 225px;
+  }
 }

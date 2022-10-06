@@ -1,71 +1,39 @@
 import * as React from 'react';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 import PersonIcon from '@mui/icons-material/Person';
-import LogoutIcon from '@mui/icons-material/Logout';
 import Badge from '@mui/material/Badge';
-import { Box, IconButton, ListItemButton, ListItemIcon, ListItemText, Menu, MenuItem, Tooltip } from '@mui/material';
+import { Box, IconButton, Typography } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
-const settings = [
-    { icon: <ProductionQuantityLimitsIcon />, label: 'Ver Carrito', url: '/cart' },
-    { icon: <PersonIcon />, label: 'Perfil', url: '/' },
-    { icon: <LogoutIcon />, label: 'Salir', url: '/' },
-];
-
 export default function CartWidget(props) {
-    const [anchorElUser, setAnchorElUser] = React.useState(null)
-    const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget)
-    };
-
-    const handleCloseUserMenu = () => {
-        setAnchorElUser(null)
-    };
-
     return (
-        <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Ver opciones">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Badge badgeContent={props.counter} color="success">
-                        <ShoppingCartIcon color="action" fontSize="large" />
-                    </Badge>
+        <Box style={{ display: 'flex' }} className="pt-3 mb-sm-2">
+            <NavLink to={'/login'} style={{ display: 'block' }}>
+                <IconButton sx={{ p: 0 }} >
+                    <PersonIcon color="action" fontSize="large" />
                 </IconButton>
-            </Tooltip>
-            <Menu
-                sx={{ mt: '45px' }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-            >
-                {settings.map((setting) => (
-                    <MenuItem key={setting.label} onClick={handleCloseUserMenu}>
-                        <NavLink to={setting.url}>
-                            <ListItemButton
-                                sx={{ py: 0, minHeight: 32 }}
-                            >
-                                <ListItemIcon sx={{ color: 'black' }}>
-                                    {setting.icon}
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary={setting.label}
-                                    primaryTypographyProps={{ fontSize: 14, fontWeight: 'medium', color: 'black' }}
-                                />
-                            </ListItemButton>
-                        </NavLink>
-                    </MenuItem>
-                ))}
-            </Menu>
+                <Typography textAlign="center" variant="h6" className="d-none d-lg-block"
+                    mx={{
+                        fontFamily: 'monospace',
+                        fontWeight: 700,
+                        color: '#1c5c3d',
+                    }}>Bienvenid@</Typography>
+            </NavLink>
+            {props.counter > 0 ?
+                <NavLink to={'/cart'} style={{ display: 'block', marginLeft: '15px' }}>
+                    <IconButton sx={{ p: 0 }} >
+                        <Badge badgeContent={props.counter} color="success">
+                            <ShoppingCartIcon color="action" fontSize="large" />
+                        </Badge>
+                    </IconButton>
+                    <Typography textAlign="center" variant="h6" className="d-none d-lg-block"
+                        mx={{
+                            fontFamily: 'monospace',
+                            fontWeight: 700,
+                            color: '#1c5c3d'
+                        }}>S/0.00</Typography>
+                </NavLink> : ''}
+
         </Box>
     )
 }

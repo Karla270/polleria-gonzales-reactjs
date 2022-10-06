@@ -16,7 +16,7 @@ import { NavLink } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 
 const pages = [{ menu: 'Promociones', url: '/categoria/promociones' }, { menu: 'Carta', url: '/categoria/carta' },
-    //{'Locales'}, {'Contáctanos'}
+{ menu: 'Locales', url: '/locales' }//, { menu: 'Contáctanos', url: '/contactanos' }
 ]
 
 export default function NavBar() {
@@ -123,7 +123,7 @@ export default function NavBar() {
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
                                 <NavLink to={page.url} activeclassname="active">
-                                    <Typography textAlign="center" to={page.url} variant="h6"
+                                    <Typography textAlign="center" variant="h6"
                                         sx={{
                                             fontFamily: 'monospace',
                                             fontWeight: 700,
@@ -132,7 +132,7 @@ export default function NavBar() {
                             </Button>
                         ))}
                     </Box>
-                    {count > 0 ? <CartWidget counter={count} /> : ''}
+                    <CartWidget counter={count} />
 
                 </Toolbar>
             </Container>

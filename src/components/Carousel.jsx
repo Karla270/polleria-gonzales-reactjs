@@ -1,7 +1,7 @@
 
 export default function Carousel() {
     return (
-        <div className="col-sm-12 pb-5">
+        <div className="col-sm-12 pt-1">
             <div className="text-center animate__animated animate__backInDown">
                 <div className="container">
                     <div id="demo" className="carousel slide size-carousel" data-ride="carousel">

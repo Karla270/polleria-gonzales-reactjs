@@ -63,10 +63,10 @@ const Checkout = () => {
     }
 
     if (loader) {
-        return <p className="text-warning p-5">Loading...</p>
+        return <p className="text-warning p-5">Cargando...</p>
     }
     return (
-        <div className="pb-5">
+        <div>
             {!orderId
                 ? <div className="col-12 row py-4">
                     <div className='col-sm-5 carta-logo'>

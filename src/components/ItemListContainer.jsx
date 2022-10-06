@@ -32,12 +32,12 @@ const ItemListContainer = () => {
 
     return (
         <div className="my-3">
-            {loading ? <p className="text-warning p-5">Loading...</p> :
+            {loading ? <p className="text-warning p-5">Cargando...</p> :
                 <>
                     {
                         categoriaId ?
                             <ItemList productList={productList} /> :
-                            <><Carousel /><ItemList productList={productList} /></>
+                            <><Carousel /><ItemList productList={productList}/></>
                     }
                 </>
             }
@@ -46,7 +46,7 @@ const ItemListContainer = () => {
                 <img src={logo} className="App-logo" alt="logo" />
             </div>
             <div className="col-sm-8">
-                {loading ? <p className="text-warning p-5">Loading...</p> : <ItemList productList={productList} />}
+                {loading ? <p className="text-warning p-5">Cargando...</p> : <ItemList productList={productList} />}
                 <p className="text-danger">{error ? error : null}</p>
             </div> */}
         </div>

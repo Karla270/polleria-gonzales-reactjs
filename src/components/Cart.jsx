@@ -9,7 +9,7 @@ const Cart = () => {
   const { cart, cartTotal, clear } = useCart()
   const navegar = useNavigate()
   return (
-    <div className="pb-5">
+    <div>
       {
         !cart.length
           ? <div className='p-5'>

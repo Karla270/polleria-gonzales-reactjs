@@ -7,6 +7,9 @@ import ItemDetailContainer from './components/ItemDetailContainer';
 import Cart from './components/Cart';
 import { CartProvider } from './context/CartContext'
 import Checkout from './components/Checkout';
+import Footer from './components/Footer';
+import Locales from './components/Locales';
+import Login from './components/Login';
 // import productos from './productos';
 // import { useEffect } from 'react';
 // import { addDoc, collection } from 'firebase/firestore';
@@ -22,29 +25,22 @@ function App() {
   return (
     <CartProvider>
       <BrowserRouter>
-        <div className="App wrapper">
-            <NavBar />
-          <section className='py-3'>
+        <div className="App">
+          <NavBar />
+          <div className='container-body'>
             <Routes>
               <Route path='/' element={<ItemListContainer />} />
               <Route path='/categoria/:categoriaId' element={<ItemListContainer />} />
               <Route path='/detalle/:id' element={<ItemDetailContainer />} />
               <Route path='/cart' element={<Cart />} />
               <Route path='/checkout' element={<Checkout />} />
-            </Routes>
-          </section>
+              <Route path='/locales' element={<Locales />} />
+              <Route path='/login' element={<Login />} />
 
-          {/* <a
-              className="App-link pt-5"
-              href="https://karla270.github.io/POLLERIA_GONZALES_JS"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Ver Site
-            </a> */}
-          <footer>
-            <span dangerouslySetInnerHTML={{ "__html": "&copy Karla Gonzáles" }} />
-          </footer>
+              {/* <Route path='/contactanos' element={<Contactanos />} /> */}
+            </Routes>
+          </div>
+          <Footer />
         </div>
       </BrowserRouter >
     </CartProvider>

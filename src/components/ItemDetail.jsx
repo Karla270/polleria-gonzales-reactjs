@@ -33,10 +33,10 @@ const ItemDetail = ({ item }) => {
 
     return (
         <div className="col-12 row py-4">
-            <div className='carta-logo col-sm-3'>
+            <div className='carta-logo col-md-3 col-sm-12'>
                 <img src={logo} className="App-logo" alt="logo" />
             </div>
-            <div className="col-sm-9">
+            <div className="col-md-9 col-sm-12">
                 <div className="body">
                     <div className="card height-promocion text-center animate__animated animate__backInDown">
                         <h2><u>{name}</u></h2>
