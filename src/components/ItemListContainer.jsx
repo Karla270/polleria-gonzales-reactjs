@@ -36,8 +36,9 @@ const ItemListContainer = () => {
                 <>
                     {
                         categoriaId ?
-                            <ItemList productList={productList} className={'col-sm-12 row center-content'}/> :
-                            <><Carousel /><ItemList productList={productList} className={'col-sm-12 row pt-4'}/></>
+                            <ItemList productList={productList} className={'col-sm-12 row center-content'} categoriaId={categoriaId} />
+                            :
+                            <><Carousel /><ItemList productList={productList} className={'col-sm-12 row pt-4'} /></>
                     }
                 </>
             }

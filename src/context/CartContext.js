@@ -4,9 +4,9 @@ export const CartContext = createContext();
 
 
 export const CartProvider = ({ children }) => {
-    const [cart, setCart] = useState([])
+    const [cart, setCart] = useState(sessionStorage.getItem('carrito') ? JSON.parse(sessionStorage.getItem('carrito')) : [])
     const [count, setCount] = useState(0)
-    const [user, setUser] = useState('Bienvenid@')
+    const [user, setUser] = useState(sessionStorage.getItem('user') ? sessionStorage.getItem('user') : 'Bienvenid@')
 
     useEffect(() => {
         const products = cart.reduce((total, item) => {
@@ -15,7 +15,10 @@ export const CartProvider = ({ children }) => {
 
         setCount(products)
 
+        if (cart.length > 0) sessionStorage.setItem('carrito', JSON.stringify(cart))
+
     }, [cart])
+
 
     const addItem = (item, cantidad) => {
         const purchase = { ...item, quantity: cantidad }
@@ -32,11 +35,11 @@ export const CartProvider = ({ children }) => {
         } else {
             setCart([...cart, purchase])
         }
-
     }
 
     const clear = () => {
         setCart([])
+        sessionStorage.removeItem('carrito');
     }
 
     const removeItem = (id) => {
@@ -46,6 +49,7 @@ export const CartProvider = ({ children }) => {
     const isInCart = (id) => {
         return cart.some((prod) => prod.id === id)
     }
+
     const cartTotal = () => {
         return cart.reduce((acc, prod) => acc += prod.price * prod.quantity, 0).toFixed(2)
     }
@@ -59,6 +63,7 @@ export const CartProvider = ({ children }) => {
         setUser('Bienvenid@')
         sessionStorage.removeItem('user');
     }
+
 
     return (
         <CartContext.Provider value={{ cart, count, clear, removeItem, isInCart, addItem, cartTotal, saveUser, clearUser, user }}>

@@ -8,7 +8,7 @@ export default function Footer() {
                     </div>
                     <div className="mt-1 item-4">
                         <h5><b>Contáctanos</b></h5>
-                        <p className="mr-3"> <i className="fa fa-phone"></i><span style={{fontSize : '20px'}}>999999999</span></p>
+                        <p className="mr-3"> <i className="fa fa-phone"></i><span style={{ fontSize: '20px' }}>999999999</span></p>
                     </div>
                     <div className="mt-1 item-4">
                         <h5 className="pb-1"><b>Medios de Pago</b></h5>
@@ -26,7 +26,7 @@ export default function Footer() {
             </footer>
             <div className="fixed-whatsapp">
                 <img className="icono-contactenos" src={require(`../assets/whatsapp-icon-64px.png`)} alt="Icono de Whatsapp"
-                    data-toggle="tooltip" data-placement="left" title="Whatsappeame!" />
+                    data-toggle="tooltip" data-placement="left" title="Whatsappeame!" onClick={() => window.open("https://api.whatsapp.com/send?phone=51910719636&text=Hola", "_blank")} />
             </div>
         </>
 

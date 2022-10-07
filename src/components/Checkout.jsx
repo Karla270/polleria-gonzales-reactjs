@@ -6,43 +6,42 @@ import { useNavigate } from 'react-router-dom'
 import { db } from '../firebase/firebase'
 import { Button } from '@mui/material'
 import logo from '../assets/logo.png';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 
 const Checkout = () => {
-    const [comprador, setComprador] = useState({})
     const [orderId, setOrderId] = useState('')
-    const [mensaje, setMensaje] = useState(false)
     const [loader, setLoader] = useState(false)
-    const { cart, cartTotal, clear } = useCart()
+    const { cart, cartTotal, clear, user } = useCart()
     const navigate = useNavigate()
-    const datosComprador = (e) => {
-        setMensaje(false)
-        setComprador({
-            ...comprador,
-            [e.target.name]: e.target.value
+
+    const CheckSchema = Yup.object().shape({
+        email: Yup.string()
+            .email("Invalid email address format")
+            .required("Email is required"),
+        phone: Yup.string()
+            .min(9, "Phone must be 9 characters at minimum")
+            .max(9, "Phone must be 9 characters at maximum")
+            .required("Phone is required"),
+        name: Yup.string()
+            .min(3, "Name must be 3 characters at minimum")
+            .required("Name is required"),
+    });
+
+    const finalizarCompra = (client) => {
+        setLoader(true)
+        const ventas = collection(db, "orders")
+        addDoc(ventas, {
+            client: client,
+            items: cart,
+            total: cartTotal(),
+            date: serverTimestamp()
         })
-    }
-
-    const finalizarCompra = (e) => {
-        e.preventDefault()
-        if (Object.values(comprador).length !== 3) {
-            setMensaje(true)
-        } else {
-            setMensaje(false)
-            setLoader(true)
-            const ventas = collection(db, "orders")
-            addDoc(ventas, {
-                comprador,
-                items: cart,
-                total: cartTotal(),
-                date: serverTimestamp()
+            .then(async (res) => {
+                await updateOrder(res)
             })
-                .then(async (res) => {
-                    await updateOrder(res)
-                })
-                .catch((error) => console.log(error))
-                .finally(() => setLoader(false))
-        }
-
+            .catch((error) => console.log(error))
+            .finally(() => setLoader(false))
     }
 
     const updateOrder = async (res) => {
@@ -69,27 +68,86 @@ const Checkout = () => {
         <div className='pt-md-5 pt-lg-0'>
             {!orderId
                 ? <div className="col-12 row center-content">
-                    <div className='col-md-5 carta-logo d-none d-lg-block'>
+                    <div className='col-md-5 carta-logo d-none d-lg-flex'>
                         <img src={logo} className="App-logo" alt="logo" />
                     </div>
                     <div className="col-md-12 col-lg-6 card body animate__animated animate__backInDown m-md-2 m-lg-0">
-                        <h2><u>Checkout</u></h2>
-                        <form className='py-3 col-auto'>
-                            <div className="mb-3">
-                                <label className="form-label">Nombre completos</label>
-                                <input className="form-control" type="text" placeholder='Nombre y Apellido' name="name" onChange={datosComprador} />
-                            </div>
-                            <div className="mb-3">
-                                <label className="form-label">Número de telefono</label>
-                                <input className="form-control" type="number" placeholder='011587892545' name="phone" onChange={datosComprador} />
-                            </div>
-                            <div className="mb-3">
-                                <label className="form-label">E-mail</label>
-                                <input className="form-control" type="email" placeholder='pepe@gmail.com' name="email" onChange={datosComprador} />
-                            </div>
-                            <Button variant="contained" color="success" onClick={finalizarCompra}>Finalizar Compra</Button>
-                            {mensaje && <p style={{ color: 'red', paddingTop: '10px' }}> Por favor complete todos los campos</p>}
-                        </form>
+                        <Formik
+                            initialValues={{ name: "", phone: "", email: user !== "Bienvenid@" ? user : "" }}
+                            validationSchema={CheckSchema}
+                            onSubmit={(values) => {
+                                finalizarCompra(values)
+                            }}>
+                            {({ touched, errors }) => (
+                                <div>
+                                    <h2 className="text-center tittle-card"><u><b>CHECKOUT</b></u></h2>
+                                    <Form className="col-auto">
+                                        <div className="form-group">
+                                            <label htmlFor="name">Nombre completos</label>
+                                            <Field
+                                                id="name"
+                                                type="text"
+                                                name="name"
+                                                placeholder="Enter name"
+                                                autoComplete="off"
+                                                className={`form-control
+                                                ${touched.name && errors.name ? "is-invalid" : ""}`}
+                                            />
+
+                                            <ErrorMessage
+                                                component="div"
+                                                name="name"
+                                                className="invalid-feedback"
+                                            />
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="phone">Número de telefono</label>
+                                            <Field
+                                                id="phone"
+                                                type="number"
+                                                name="phone"
+                                                placeholder="Enter phone"
+                                                autoComplete="off"
+                                                className={`form-control
+                                                ${touched.phone && errors.phone ? "is-invalid" : ""}`}
+                                            />
+
+                                            <ErrorMessage
+                                                component="div"
+                                                name="phone"
+                                                className="invalid-feedback"
+                                            />
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="email">Email</label>
+                                            <Field
+                                                id="email"
+                                                type="email"
+                                                name="email"
+                                                placeholder="Enter email"
+                                                autoComplete="off"
+                                                className={`form-control
+                                                ${touched.email && errors.email ? "is-invalid" : ""}`}
+                                            />
+
+                                            <ErrorMessage
+                                                component="div"
+                                                name="email"
+                                                className="invalid-feedback"
+                                            />
+                                        </div>
+                                        <div className="col-auto text-center m-auto">
+                                            <button
+                                                type="submit"
+                                                className="btn btn-primary btn-block mt-2"
+                                            >
+                                                FINALIZAR COMPRA
+                                            </button>
+                                        </div>
+                                    </Form>
+                                </div>
+                            )}
+                        </Formik>
                     </div>
                 </div>
                 :

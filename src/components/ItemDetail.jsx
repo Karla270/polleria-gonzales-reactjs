@@ -40,7 +40,7 @@ const ItemDetail = ({ item }) => {
                 <div className="body">
                     <div className="card height-promocion text-center animate__animated animate__backInDown">
                         <h2><u>{name}</u></h2>
-                        <div className="row py-3">
+                        <div className="row">
                             <div className="col-sm-6">
                                 <img src={require(`../assets/products/${image}`)} alt="Logo" className="item-img" />
                             </div>

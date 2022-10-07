@@ -13,13 +13,13 @@ const Cart = () => {
       {
         !cart.length
           ? <div className='p-5'>
-            <h1 className='text-warning'>¡Tu carrito esta vacio!</h1>
-            <h4 className='text-info p-3'>Te invitamos a ver nuestros productos</h4>
+            <h1 className='text-warning'>¡Tu carrito está vacío!</h1>
+            <h3 className='text-info p-3'>Te invitamos a ver nuestros productos</h3>
             <Button variant="contained" color="success" className='mt-2' onClick={() => navegar('/')}>Ir a comprar</Button>
           </div>
           :
-          <div className="center-content col-12 row pt-md-1 pt-lg-0">
-            <div className='col-md-3 carta-logo d-none d-lg-block'>
+          <div className="center-content col-12 row pt-md-5 pt-lg-0">
+            <div className='col-md-3 carta-logo d-none d-lg-flex'>
               <img src={logo} className="App-logo" alt="logo" />
             </div>
             <div className="col-md-12 col-lg-9 card height-cart animate__animated animate__backInDown m-md-2 m-lg-0">

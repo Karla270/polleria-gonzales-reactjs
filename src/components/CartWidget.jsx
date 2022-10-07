@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 
 export default function CartWidget(props) {
     return (
-        <Box style={{ display: 'flex' }} className="pt-2 mb-sm-2">
+        <Box style={{ display: 'flex' }} className="pt-2">
             <NavLink to={'/login'} style={{ display: 'block' }}>
                 <IconButton sx={{ p: 0 }} >
                     <PersonIcon color="action" fontSize="large" />
@@ -17,23 +17,21 @@ export default function CartWidget(props) {
                         fontFamily: 'monospace',
                         fontWeight: 700,
                         color: '#1c5c3d',
-                    }}>{props.user}</Typography>
+                    }}>{props.user.slice(0,10)}</Typography>
             </NavLink>
-            {props.counter > 0 ?
-                <NavLink to={'/cart'} style={{ display: 'block', marginLeft: '15px' }}>
-                    <IconButton sx={{ p: 0 }} >
-                        <Badge badgeContent={props.counter} color="success">
-                            <ShoppingCartIcon color="action" fontSize="large" />
-                        </Badge>
-                    </IconButton>
-                    <Typography textAlign="center" variant="h6" className="d-none d-lg-block"
-                        mx={{
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            color: '#1c5c3d'
-                        }}>S/{props.total}</Typography>
-                </NavLink> : ''}
-
+            <NavLink to={'/cart'} style={{ display: 'block', marginLeft: '15px' }}>
+                <IconButton sx={{ p: 0 }} >
+                    <Badge badgeContent={props.counter} color="success">
+                        <ShoppingCartIcon color="action" fontSize="large" />
+                    </Badge>
+                </IconButton>
+                <Typography textAlign="center" variant="h6" className="d-none d-lg-block"
+                    mx={{
+                        fontFamily: 'monospace',
+                        fontWeight: 700,
+                        color: '#1c5c3d'
+                    }}>S/{props.total}</Typography>
+            </NavLink>
         </Box>
     )
 }

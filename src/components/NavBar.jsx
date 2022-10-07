@@ -16,8 +16,7 @@ import { NavLink } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 
 const pages = [{ menu: 'Promociones', url: '/categoria/promociones' }, { menu: 'Carta', url: '/categoria/carta' },
-{ menu: 'Locales', url: '/locales' }//, { menu: 'Contáctanos', url: '/contactanos' }
-]
+{ menu: 'Locales', url: '/locales' }]
 
 export default function NavBar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null)

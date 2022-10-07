@@ -5,8 +5,6 @@ export default function Locales() {
         <div className="container-fluid">
             <div className="py-4">
                 <h1 className="text-center"><u><b>NUESTROS LOCALES</b></u></h1>
-
-                {/* <h1 className="text-center"><u><b>NUESTROS LOCALES</b></u></h1> */}
                 <div className="mx-3">
                     <div className="row pt-md-1">
                         <div className="col-lg-6 col-sm-12 text-center pt-md-3">
