@@ -17,15 +17,19 @@ const Checkout = () => {
 
     const CheckSchema = Yup.object().shape({
         email: Yup.string()
-            .email("Invalid email address format")
-            .required("Email is required"),
+            .email("Email inválido")
+            .required("Email es requerido"),
         phone: Yup.string()
-            .min(9, "Phone must be 9 characters at minimum")
-            .max(9, "Phone must be 9 characters at maximum")
-            .required("Phone is required"),
+            .min(9, "Teléfono debe tener 9 dígitos como mínimo")
+            .max(9, "Teléfono debe tener 9 dígitos como máximo")
+            .required("Teléfono es requerido"),
         name: Yup.string()
-            .min(3, "Name must be 3 characters at minimum")
-            .required("Name is required"),
+            .min(3, "Nombre debe tener 3 caracteres como mínimo")
+            .required("Nombre es requerido"),
+        emailConfirmed: Yup.string()
+            .oneOf([Yup.ref("email"), null], "No coincide el email")
+            .email("Email inválido")
+            .required("Validar email es requerido"),
     });
 
     const finalizarCompra = (client) => {
@@ -71,9 +75,9 @@ const Checkout = () => {
                     <div className='col-md-5 carta-logo d-none d-lg-flex'>
                         <img src={logo} className="App-logo" alt="logo" />
                     </div>
-                    <div className="col-md-12 col-lg-6 card body animate__animated animate__backInDown m-md-2 m-lg-0">
+                    <div className="col-md-12 col-lg-6 card body animate__animated animate__backInDown m-md-2 m-lg-0 mb-lg-3">
                         <Formik
-                            initialValues={{ name: "", phone: "", email: user !== "Bienvenid@" ? user : "" }}
+                            initialValues={{ name: "", phone: "", email: user !== "Bienvenid@" ? user : "", emailConfirmed: "" }}
                             validationSchema={CheckSchema}
                             onSubmit={(values) => {
                                 finalizarCompra(values)
@@ -81,14 +85,14 @@ const Checkout = () => {
                             {({ touched, errors }) => (
                                 <div>
                                     <h2 className="text-center tittle-card"><u><b>CHECKOUT</b></u></h2>
-                                    <Form className="col-auto">
+                                    <Form className="col-auto pt-2" style={{fontSize: '15px'}}>
                                         <div className="form-group">
                                             <label htmlFor="name">Nombre completos</label>
                                             <Field
                                                 id="name"
                                                 type="text"
                                                 name="name"
-                                                placeholder="Enter name"
+                                                placeholder="Ej. Karla Gonzales"
                                                 autoComplete="off"
                                                 className={`form-control
                                                 ${touched.name && errors.name ? "is-invalid" : ""}`}
@@ -101,12 +105,12 @@ const Checkout = () => {
                                             />
                                         </div>
                                         <div className="form-group">
-                                            <label htmlFor="phone">Número de telefono</label>
+                                            <label htmlFor="phone">Teléfono</label>
                                             <Field
                                                 id="phone"
                                                 type="number"
                                                 name="phone"
-                                                placeholder="Enter phone"
+                                                placeholder="Ej. 910719636"
                                                 autoComplete="off"
                                                 className={`form-control
                                                 ${touched.phone && errors.phone ? "is-invalid" : ""}`}
@@ -124,7 +128,7 @@ const Checkout = () => {
                                                 id="email"
                                                 type="email"
                                                 name="email"
-                                                placeholder="Enter email"
+                                                placeholder="Ej. abc@gmail.com"
                                                 autoComplete="off"
                                                 className={`form-control
                                                 ${touched.email && errors.email ? "is-invalid" : ""}`}
@@ -133,6 +137,24 @@ const Checkout = () => {
                                             <ErrorMessage
                                                 component="div"
                                                 name="email"
+                                                className="invalid-feedback"
+                                            />
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="emailConfirmed">Validar email</label>
+                                            <Field
+                                                id="emailConfirmed"
+                                                type="email"
+                                                name="emailConfirmed"
+                                                placeholder="Ej. abc@gmail.com"
+                                                autoComplete="off"
+                                                className={`form-control
+                                                ${touched.emailConfirmed && errors.emailConfirmed ? "is-invalid" : ""}`}
+                                            />
+
+                                            <ErrorMessage
+                                                component="div"
+                                                name="emailConfirmed"
                                                 className="invalid-feedback"
                                             />
                                         </div>

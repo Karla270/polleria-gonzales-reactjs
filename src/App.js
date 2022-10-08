@@ -10,18 +10,8 @@ import Checkout from './components/Checkout';
 import Footer from './components/Footer';
 import Locales from './components/Locales';
 import Login from './components/Login';
-// import productos from './productos';
-// import { useEffect } from 'react';
-// import { addDoc, collection } from 'firebase/firestore';
-// import { db } from './firebase/firebase';
 
 function App() {
-
-  // useEffect(()=>{
-  //   const productosCollecction = collection(db, "items")
-  //   productos.map((item)=> addDoc(productosCollecction, item))
-  // }, [])
-
   return (
     <CartProvider>
       <BrowserRouter>

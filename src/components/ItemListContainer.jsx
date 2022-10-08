@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import ItemList from './ItemList';
 import { collection, getDocs, orderBy, query, where } from 'firebase/firestore'
 import { db } from "../firebase/firebase";
-import Carousel from "./Carousel";
+import CarouselPromociones from "./Carousel";
 
 const ItemListContainer = () => {
     const [loading, setLoading] = useState(false)
@@ -38,7 +38,7 @@ const ItemListContainer = () => {
                         categoriaId ?
                             <ItemList productList={productList} className={'col-sm-12 row center-content'} categoriaId={categoriaId} />
                             :
-                            <><Carousel /><ItemList productList={productList} className={'col-sm-12 row pt-4'} /></>
+                            <><CarouselPromociones /><ItemList productList={productList} className={'col-sm-12 row'} /></>
                     }
                 </>
             }

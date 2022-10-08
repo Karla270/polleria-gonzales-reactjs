@@ -96,7 +96,7 @@ export default function NavBar() {
                     <Avatar sx={{ display: { xs: 'flex', md: 'none' }, mr: 1, width: 50, height: 50 }}
                         style={{ position: "absolute", left: '20%' }}
                         src={Logo} alt="Logo" />
-                    <NavLink to='/' style={{ position: "absolute", left: '40%' }}>
+                    <NavLink to='/' style={{ position: "absolute", left: '35%' }}>
                         <Typography
                             variant="h5"
                             noWrap
