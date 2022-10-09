@@ -3,10 +3,12 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useCart } from '../context/CartContext';
 import { getAuth, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider } from "firebase/auth";
-
+import { useAlert } from '../context/AlertContext';
 
 export default function Login() {
     const { saveUser, clearUser, user } = useCart()
+    const { openAlert } = useAlert()
+
     const providerGoogle = new GoogleAuthProvider();
     const providerFacebook = new FacebookAuthProvider();
 
@@ -19,18 +21,8 @@ export default function Login() {
             .then((result) => {
                 const profile = { fullName: result._tokenResponse.fullName, email: result.user.email, providerId: result.providerId }
                 saveUser(JSON.stringify(profile))
-
             }).catch((error) => {
-                console.log(error);
-                //https://polleria-gonzales.firebaseapp.com/__/auth/handler
-                // Handle Errors here.
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // The email of the user's account used.
-                const email = error.customData.email;
-                // The AuthCredential type that was used.
-                const credential = GoogleAuthProvider.credentialFromError(error);
-                // ...
+                openAlert("error",error.message)
             });
     }
 
@@ -41,15 +33,7 @@ export default function Login() {
                 saveUser(JSON.stringify(profile))
             })
             .catch((error) => {
-                // Handle Errors here.
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // The email of the user's account used.
-                const email = error.customData.email;
-                // The AuthCredential type that was used.
-                const credential = FacebookAuthProvider.credentialFromError(error);
-
-                // ...
+                openAlert("error",error.message)
             });
     }
 

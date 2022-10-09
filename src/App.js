@@ -10,30 +10,37 @@ import Checkout from './components/Checkout';
 import Footer from './components/Footer';
 import Locales from './components/Locales';
 import Login from './components/Login';
+import { AltertProvider } from './context/AlertContext';
+import AlertMessage from './components/AlertMessage';
 
 function App() {
   return (
-    <CartProvider>
-      <BrowserRouter>
-        <div className="App">
-          <NavBar />
-          <div className='container-body'>
-            <Routes>
-              <Route path='/' element={<ItemListContainer />} />
-              <Route path='/categoria/:categoriaId' element={<ItemListContainer />} />
-              <Route path='/detalle/:id' element={<ItemDetailContainer />} />
-              <Route path='/cart' element={<Cart />} />
-              <Route path='/checkout' element={<Checkout />} />
-              <Route path='/locales' element={<Locales />} />
-              <Route path='/login' element={<Login />} />
+    <AltertProvider>
+      <CartProvider>
+        <BrowserRouter>
+          <div className="App">
+            <NavBar />
+            <div className='container-body'>
+              <Routes>
+                <Route path='/' element={<ItemListContainer />} />
+                <Route path='/categoria/:categoriaId' element={<ItemListContainer />} />
+                <Route path='/detalle/:id' element={<ItemDetailContainer />} />
+                <Route path='/cart' element={<Cart />} />
+                <Route path='/checkout' element={<Checkout />} />
+                <Route path='/locales' element={<Locales />} />
+                <Route path='/login' element={<Login />} />
 
-              {/* <Route path='/contactanos' element={<Contactanos />} /> */}
-            </Routes>
+                {/* <Route path='/contactanos' element={<Contactanos />} /> */}
+              </Routes>
+            </div>
+            <Footer />
+            <AlertMessage />
           </div>
-          <Footer />
-        </div>
-      </BrowserRouter >
-    </CartProvider>
+        </BrowserRouter >
+      </CartProvider>
+    </AltertProvider>
+
+
   );
 }
 

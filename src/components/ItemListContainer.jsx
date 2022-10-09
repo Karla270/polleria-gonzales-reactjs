@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-// import productos from "../productos";
 import ItemList from './ItemList';
 import { collection, getDocs, orderBy, query, where } from 'firebase/firestore'
 import { db } from "../firebase/firebase";
 import CarouselPromociones from "./Carousel";
+import { useAlert } from "../context/AlertContext";
 
 const ItemListContainer = () => {
     const [loading, setLoading] = useState(false)
-    const [error, setError] = useState('')
     const [productList, setProductList] = useState([])
+    const { openAlert } = useAlert()
     const { categoriaId } = useParams()
 
 
@@ -26,9 +26,9 @@ const ItemListContainer = () => {
                 })
                 setProductList(lista)
             })
-            .catch((error) => setError(error))
+            .catch((error) => openAlert("error", error.message))
             .finally(() => setLoading(false))
-    }, [categoriaId])
+    }, [categoriaId, openAlert])
 
     return (
         <div className="my-lg-0 my-xl-3">
@@ -42,7 +42,6 @@ const ItemListContainer = () => {
                     }
                 </>
             }
-            <p className="text-danger">{error ? error : null}</p>
         </div>
     )
 }

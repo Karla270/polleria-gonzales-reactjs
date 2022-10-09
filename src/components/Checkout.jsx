@@ -8,11 +8,14 @@ import { Button } from '@mui/material'
 import logo from '../assets/logo.png';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { useAlert } from '../context/AlertContext'
 
 const Checkout = () => {
     const [orderId, setOrderId] = useState('')
     const [loader, setLoader] = useState(false)
     const { cart, cartTotal, clear, user } = useCart()
+    const { openAlert } = useAlert()
+
     const navigate = useNavigate()
 
     const checkSchema = Yup.object().shape({
@@ -43,8 +46,9 @@ const Checkout = () => {
         })
             .then(async (res) => {
                 await updateOrder(res)
+                openAlert("success","Gracias por su compra!")
             })
-            .catch((error) => console.log(error))
+            .catch((error) => openAlert("error", error.message))
             .finally(() => setLoader(false))
     }
 
@@ -59,8 +63,8 @@ const Checkout = () => {
             setOrderId(res.id)
             clear()
         }
-        catch (e) {
-            console.error(e);
+        catch (error) {
+            openAlert("error", error.message)
         }
 
     }

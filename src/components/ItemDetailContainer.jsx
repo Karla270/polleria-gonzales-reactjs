@@ -3,11 +3,12 @@ import ItemDetail from './ItemDetail';
 import { useParams } from 'react-router-dom'
 import { collection, doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase/firebase";
+import { useAlert } from "../context/AlertContext";
 
 const ItemDetailContainer = () => {
     const [loading, setLoading] = useState(true)
-    const [error, setError] = useState('')
     const [product, setProduct] = useState({})
+    const { openAlert } = useAlert()
     const { id } = useParams()
 
     useEffect(() => {
@@ -21,9 +22,9 @@ const ItemDetailContainer = () => {
                     ...result.data()
                 })
             })
-            .catch((error) => setError(error))
+            .catch((error) => openAlert("error", error.message))
             .finally(() => setLoading(false))
-    }, [id])
+    }, [id, openAlert])
 
     return (
         <aside>
@@ -31,7 +32,6 @@ const ItemDetailContainer = () => {
                 product.name ? <ItemDetail item={product} />
                     : <p className="text-warning p-5">No se encontró el producto</p>
             )}
-            <p className="text-danger">{error ? error : null}</p>
         </aside>
     )
 }
