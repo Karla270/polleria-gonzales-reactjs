@@ -2,35 +2,100 @@ import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useCart } from '../context/CartContext';
+import { getAuth, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider } from "firebase/auth";
+
 
 export default function Login() {
     const { saveUser, clearUser, user } = useCart()
+    const providerGoogle = new GoogleAuthProvider();
+    const providerFacebook = new FacebookAuthProvider();
 
-    const LoginSchema = Yup.object().shape({
+    const auth = getAuth();
+    providerGoogle.addScope('https://www.googleapis.com/auth/contacts.readonly');
+    providerFacebook.addScope('user_birthday');
+
+    const google = () => {
+        signInWithPopup(auth, providerGoogle)
+            .then((result) => {
+                const profile = { fullName: result._tokenResponse.fullName, email: result.user.email, providerId: result.providerId }
+                saveUser(JSON.stringify(profile))
+
+            }).catch((error) => {
+                console.log(error);
+                //https://polleria-gonzales.firebaseapp.com/__/auth/handler
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // The email of the user's account used.
+                const email = error.customData.email;
+                // The AuthCredential type that was used.
+                const credential = GoogleAuthProvider.credentialFromError(error);
+                // ...
+            });
+    }
+
+    const facebook = () => {
+        signInWithPopup(auth, providerFacebook)
+            .then((result) => {
+                const profile = { fullName: result._tokenResponse.fullName, email: result.user.email, providerId: result.providerId }
+                saveUser(JSON.stringify(profile))
+            })
+            .catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // The email of the user's account used.
+                const email = error.customData.email;
+                // The AuthCredential type that was used.
+                const credential = FacebookAuthProvider.credentialFromError(error);
+
+                // ...
+            });
+    }
+
+    const loginSchema = Yup.object().shape({
+        fullName: Yup.string()
+            .min(3, "Nombre debe tener 3 caracteres como mínimo")
+            .required("Nombres es requerido"),
         email: Yup.string()
-            .email("Invalid email address format")
-            .required("Email is required"),
-        password: Yup.string()
-            .min(3, "Password must be 3 characters at minimum")
-            .required("Password is required"),
+            .email("Email inválido")
+            .required("Email es requerido")
     });
 
 
     return (
         <div className="pt-xl-0">
             <div className="center-content col-xl-4 col-lg-5 col-md-8 col-xs-12 row ml-auto mr-auto">
-                {user === 'Bienvenid@' ?
+                {!user.fullName ?
                     <div className="card animate__animated animate__backInDown">
                         <Formik
-                            initialValues={{ email: "", password: "" }}
-                            validationSchema={LoginSchema}
+                            initialValues={{ email: "", fullName: "" }}
+                            validationSchema={loginSchema}
                             onSubmit={(values) => {
-                                saveUser(values.email)
+                                saveUser(JSON.stringify(values))
                             }}>
                             {({ touched, errors }) => (
                                 <div>
                                     <h2 className="text-center tittle-card"><u><b>INICIAR SESIÓN</b></u></h2>
-                                    <Form className="col-auto">
+                                    <Form className="col-auto pt-2">
+                                        <div className="form-group">
+                                            <label htmlFor="fullName">Nombres</label>
+                                            <Field
+                                                id="fullName"
+                                                type="text"
+                                                name="fullName"
+                                                placeholder="Ej. Karla Gonzales Moran"
+                                                autoComplete="off"
+                                                className={`mt-2 form-control
+                                                ${touched.fullName && errors.fullName ? "is-invalid" : ""}`}
+                                            />
+
+                                            <ErrorMessage
+                                                component="div"
+                                                name="fullName"
+                                                className="invalid-feedback"
+                                            />
+                                        </div>
                                         <div className="form-group">
                                             <label htmlFor="email">Email</label>
                                             <Field
@@ -49,32 +114,10 @@ export default function Login() {
                                                 className="invalid-feedback"
                                             />
                                         </div>
-
-                                        <div className="form-group">
-                                            <label htmlFor="password" className="mt-3">
-                                                Contraseña
-                                            </label>
-                                            <Field
-                                                id="password"
-                                                type="password"
-                                                name="password"
-                                                placeholder="Enter password"
-                                                className={`mt-2 form-control
-                                                ${touched.password && errors.password
-                                                        ? "is-invalid"
-                                                        : ""
-                                                    }`}
-                                            />
-                                            <ErrorMessage
-                                                component="div"
-                                                name="password"
-                                                className="invalid-feedback"
-                                            />
-                                        </div>
                                         <div className="col-auto text-center m-auto">
                                             <button
                                                 type="submit"
-                                                className="btn btn-primary btn-block mt-4"
+                                                className="btn btn-primary btn-block mt-2"
                                             >
                                                 INGRESAR
                                             </button>
@@ -86,9 +129,9 @@ export default function Login() {
                         <div className="col-12 text-center py-3">
                             <p><b>O inicia sesión con</b></p>
                             <i className="fa fa-facebook"
-                                onClick={() => window.open("https://www.facebook.com/", "_blank")}></i>
+                                onClick={() => facebook()}></i>
                             <i className="fa fa-google"
-                                onClick={() => window.open("https://mail.google.com/", "_blank")}></i>
+                                onClick={() => google()}></i>
                         </div>
                     </div>
                     :
@@ -96,7 +139,7 @@ export default function Login() {
                         <h2 className="text-center tittle-card"><u><b>MI PERFIL</b></u></h2>
                         <div className="row">
                             <div className="col-12 form-group has-success has-feedback">
-                                <h4 className="text-center pt-3">Hola, {user}</h4>
+                                <h4 className="text-center pt-3">Hola, {user.fullName}</h4>
                             </div>
                             <div className="col-auto text-center m-auto">
                                 <button

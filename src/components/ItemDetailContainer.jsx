@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ItemDetail from './ItemDetail';
 import { useParams } from 'react-router-dom'
-// import productos from "../productos";
 import { collection, doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 
@@ -13,11 +12,8 @@ const ItemDetailContainer = () => {
 
     useEffect(() => {
         setLoading(true)
-        //le decimos nuestra base de datos y en que coleccion esta
         const coleccionProductos = collection(db, "items")
-        //hacer una referencia que me traiga el ID del useParam
         const referenciaDoc = doc(coleccionProductos, id)
-        //traemos un documento
         getDoc(referenciaDoc)
             .then((result) => {
                 setProduct({

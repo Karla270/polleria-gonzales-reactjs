@@ -6,7 +6,7 @@ export const CartContext = createContext();
 export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState(sessionStorage.getItem('carrito') ? JSON.parse(sessionStorage.getItem('carrito')) : [])
     const [count, setCount] = useState(0)
-    const [user, setUser] = useState(sessionStorage.getItem('user') ? sessionStorage.getItem('user') : 'Bienvenid@')
+    const [user, setUser] = useState(sessionStorage.getItem('user') ? JSON.parse(sessionStorage.getItem('user')) : {})
 
     useEffect(() => {
         const products = cart.reduce((total, item) => {
@@ -55,12 +55,12 @@ export const CartProvider = ({ children }) => {
     }
 
     const saveUser = (user) => {
-        setUser(user)
+        setUser(JSON.parse(user))
         sessionStorage.setItem('user', user);
     }
 
     const clearUser = () => {
-        setUser('Bienvenid@')
+        setUser({})
         sessionStorage.removeItem('user');
     }
 

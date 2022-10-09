@@ -15,7 +15,7 @@ const Checkout = () => {
     const { cart, cartTotal, clear, user } = useCart()
     const navigate = useNavigate()
 
-    const CheckSchema = Yup.object().shape({
+    const checkSchema = Yup.object().shape({
         email: Yup.string()
             .email("Email inválido")
             .required("Email es requerido"),
@@ -77,15 +77,15 @@ const Checkout = () => {
                     </div>
                     <div className="col-md-12 col-lg-6 card body animate__animated animate__backInDown m-lg-0 m-2 mb-lg-3">
                         <Formik
-                            initialValues={{ name: "", phone: "", email: user !== "Bienvenid@" ? user : "", emailConfirmed: "" }}
-                            validationSchema={CheckSchema}
+                            initialValues={{ name: user.fullName ? user.fullName : "", phone: "", email: user.email ? user.email : "", emailConfirmed: user.providerId ? user.email : "" }}
+                            validationSchema={checkSchema}
                             onSubmit={(values) => {
                                 finalizarCompra(values)
                             }}>
                             {({ touched, errors }) => (
                                 <div>
                                     <h2 className="text-center tittle-card"><u><b>CHECKOUT</b></u></h2>
-                                    <Form className="col-auto pt-2" style={{fontSize: '15px'}}>
+                                    <Form className="col-auto pt-2" style={{ fontSize: '15px' }}>
                                         <div className="form-group">
                                             <label htmlFor="name">Nombre completos</label>
                                             <Field
@@ -140,24 +140,27 @@ const Checkout = () => {
                                                 className="invalid-feedback"
                                             />
                                         </div>
-                                        <div className="form-group">
-                                            <label htmlFor="emailConfirmed">Validar email</label>
-                                            <Field
-                                                id="emailConfirmed"
-                                                type="email"
-                                                name="emailConfirmed"
-                                                placeholder="Ej. abc@gmail.com"
-                                                autoComplete="off"
-                                                className={`form-control
-                                                ${touched.emailConfirmed && errors.emailConfirmed ? "is-invalid" : ""}`}
-                                            />
+                                        {user.providerId ? '' :
+                                            <div className="form-group">
+                                                <label htmlFor="emailConfirmed">Validar email</label>
+                                                <Field
+                                                    id="emailConfirmed"
+                                                    type="email"
+                                                    name="emailConfirmed"
+                                                    placeholder="Ej. abc@gmail.com"
+                                                    autoComplete="off"
+                                                    className={`form-control
+                                                    ${touched.emailConfirmed && errors.emailConfirmed ? "is-invalid" : ""}`}
+                                                />
 
-                                            <ErrorMessage
-                                                component="div"
-                                                name="emailConfirmed"
-                                                className="invalid-feedback"
-                                            />
-                                        </div>
+                                                <ErrorMessage
+                                                    component="div"
+                                                    name="emailConfirmed"
+                                                    className="invalid-feedback"
+                                                />
+                                            </div>
+                                        }
+
                                         <div className="col-auto text-center m-auto">
                                             <button
                                                 type="submit"
