@@ -28,7 +28,8 @@ const ItemListContainer = () => {
             })
             .catch((error) => openAlert("error", error.message))
             .finally(() => setLoading(false))
-    }, [categoriaId, openAlert])
+        // eslint-disable-next-line
+    }, [categoriaId])
 
     return (
         <div className="my-lg-0 my-xl-3">

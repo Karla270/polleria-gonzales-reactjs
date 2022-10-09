@@ -22,9 +22,10 @@ const ItemDetailContainer = () => {
                     ...result.data()
                 })
             })
-            .catch((error) => openAlert("error", error.message))
+            .catch((error) => openAlert("error", error))
             .finally(() => setLoading(false))
-    }, [id, openAlert])
+        // eslint-disable-next-line
+    }, [id])
 
     return (
         <aside>
