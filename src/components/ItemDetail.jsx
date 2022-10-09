@@ -32,7 +32,7 @@ const ItemDetail = ({ item }) => {
 
 
     return (
-        <div className="col-12 row center-content pt-md-5 pt-lg-0">
+        <div className="col-12 row center-content m-lg-0 m-0">
             <div className='col-md-3 carta-logo d-none d-lg-flex'>
                 <img src={logo} className="App-logo" alt="logo" />
             </div>

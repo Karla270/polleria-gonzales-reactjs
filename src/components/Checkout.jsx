@@ -75,7 +75,7 @@ const Checkout = () => {
                     <div className='col-md-5 carta-logo d-none d-lg-flex'>
                         <img src={logo} className="App-logo" alt="logo" />
                     </div>
-                    <div className="col-md-12 col-lg-6 card body animate__animated animate__backInDown m-md-2 m-lg-0 mb-lg-3">
+                    <div className="col-md-12 col-lg-6 card body animate__animated animate__backInDown m-lg-0 m-2 mb-lg-3">
                         <Formik
                             initialValues={{ name: "", phone: "", email: user !== "Bienvenid@" ? user : "", emailConfirmed: "" }}
                             validationSchema={CheckSchema}

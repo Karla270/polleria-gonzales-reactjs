@@ -31,14 +31,14 @@ const ItemListContainer = () => {
     }, [categoriaId])
 
     return (
-        <div className="my-3">
+        <div className="my-lg-0 my-xl-3">
             {loading ? <p className="text-warning p-5">Cargando...</p> :
                 <>
                     {
                         categoriaId ?
-                            <ItemList productList={productList} className={'col-sm-12 row center-content'} categoriaId={categoriaId} />
+                            <ItemList productList={productList} className={'col-sm-12 row m-lg-0 m-1 center-content'} categoriaId={categoriaId} />
                             :
-                            <><CarouselPromociones /><ItemList productList={productList} className={'col-sm-12 row'} /></>
+                            <><CarouselPromociones /><ItemList productList={productList} className={'row m-lg-0 m-1'} /></>
                     }
                 </>
             }

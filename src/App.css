@@ -82,7 +82,7 @@ body {
 
 .height-cart {
   overflow-y: auto;
-  max-height: calc(100vh - 250px);
+  max-height: calc(100vh - 30vh);
 }
 
 
@@ -177,7 +177,7 @@ h2 {
 
 .carousel .slide img {
   width: 100%;
-  height: calc(100vh - 130px);;
+  height: calc(100vh - 130px);
   border: solid 5px #007235 !important;
   border-radius: 20px;
 }
@@ -353,7 +353,8 @@ footer {
     top: 0;
     -webkit-transform: 0;
     transform: none;
-    padding-top: 10px;
+    padding-bottom: calc(100vh - 95vh);
+    padding-top: calc(100vh - 95vh);
   }
 }
 
@@ -369,8 +370,8 @@ footer {
     top: 0;
     -webkit-transform: 0;
     transform: none;
-    padding-bottom: 10px;
-    padding-top: 10px;
+    padding-bottom: calc(100vh - 95vh);
+    padding-top: calc(100vh - 95vh);
   }
 }
 

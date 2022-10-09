@@ -17,8 +17,8 @@ export default function Login() {
 
 
     return (
-        <div className="center-content container pt-md-5 pt-lg-0">
-            <div className="col-lg-6 col-md-8 col-xs-12 ml-auto mr-auto">
+        <div className="pt-xl-0">
+            <div className="center-content col-xl-4 col-lg-5 col-md-8 col-xs-12 row ml-auto mr-auto">
                 {user === 'Bienvenid@' ?
                     <div className="card animate__animated animate__backInDown">
                         <Formik

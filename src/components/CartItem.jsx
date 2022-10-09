@@ -4,7 +4,7 @@ import { useCart } from '../context/CartContext'
 const CartItem = ({ compra }) => {
   const { removeItem } = useCart()
   return (
-    <div className='carrito'>
+    <div className='pt-xl-3 pt-lg-0'>
       <ul className='list-group'>
         <li className='item row'>
           <img src={require(`../assets/products/${compra.image}`)} alt={compra.name} className='carrito-img col-sm-2 py-1' />

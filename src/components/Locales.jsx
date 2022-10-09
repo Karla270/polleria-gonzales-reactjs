@@ -7,7 +7,7 @@ export default function Locales() {
                 <h1 className="text-center"><u><b>NUESTROS LOCALES</b></u></h1>
                 <div className="mx-3">
                     <div className="row pt-md-1">
-                        <div className="col-lg-6 col-sm-12 text-center pt-md-3">
+                        <div className="col-lg-6 col-sm-12 text-center">
                             <div className="card animate__animated animate__rotateInDownLeft">
                                 <h3 className="text-center text-uppercase tittle-card"><u><b>Santiago de Surco </b></u></h3>
                                 <div style={{ fontSize: '22px' }}>
@@ -30,7 +30,7 @@ export default function Locales() {
                             </div>
 
                         </div>
-                        <div className="col-lg-6 col-sm-12 text-center pt-md-3">
+                        <div className="col-lg-6 col-sm-12 text-center pt-3 pt-lg-0">
                             <div className="card animate__animated animate__rotateInDownRight">
                                 <h3 className="text-center text-uppercase tittle-card"><u><b>Chorrillos</b></u></h3>
                                 <div style={{ fontSize: '22px' }}>
