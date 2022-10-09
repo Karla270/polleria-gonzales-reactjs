@@ -43,7 +43,7 @@ Consulte la sección sobre [deployment](https://facebook.github.io/create-react-
 - [https://polleria-gonzales.web.app](https://polleria-gonzales.web.app)
 
 ## Demo
-![App Screenshot](https://educacion30.b-cdn.net/wp-content/uploads/2019/06/homer.gif)
+![App Screenshot](https://github.com/Karla270/polleria-gonzales-reactjs/blob/master/src/assets/demo.gif?raw=true)
 
 ## Autor
 
